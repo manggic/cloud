@@ -182,7 +182,7 @@ chmod 400 EC2Tutorial.pem
 - An AWS service for serverless computing is AWS Lambda.
 
 ### AWS Lambda
-- AWS Lambda(opens in a new tab) is a service that lets you run code without needing to provision or manage servers. 
+- AWS Lambda is a service that lets you run code without needing to provision or manage servers. 
 - While using AWS Lambda, you pay only for the compute time that you consume. Charges apply only when your code is running. 
 - For example, a simple Lambda function might involve automatically resizing uploaded images to the AWS Cloud. In this case, the function triggers when uploading a new image. 
 
@@ -227,9 +227,11 @@ chmod 400 EC2Tutorial.pem
   - Load balancing
   - Automatic scaling
   - Application health monitoring
+- AWS Elastic Beanstalk is a deployment service offered by Amazon Web Services (AWS) that simplifies the process of deploying and managing web applications in the cloud. It eliminates the need to manually provision and configure underlying infrastructure, allowing you to focus on your application code.  
 
 ### AWS CloudFormation
 - With AWS CloudFormation, you can treat your infrastructure as code.
+- CloudFormation uses templates written in JSON or YAML to define the AWS resources you need for your application. These templates specify the resources (like EC2 instances, S3 buckets, etc.) and their configurations. This approach allows for version control, collaboration, and easier replication of your infrastructure.
 - This means that you can build an environment by writing lines of code instead of using the AWS Management Console to individually provision resources.
 - AWS CloudFormation provisions your resources in a safe, repeatable manner, enabling you to frequently build your infrastructure and applications without having to perform manual actions.
 - It determines the right operations to perform when managing your stack and rolls back changes automatically if it detects errors.
