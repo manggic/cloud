@@ -199,7 +199,7 @@ chmod 400 EC2Tutorial.pem
 - Two services that provide container orchestration: Amazon Elastic Container Service and Amazon Elastic Kubernetes Service.
    - Amazon Elastic Container Service (Amazon ECS): 
      - It is a highly scalable, high-performance container management system that enables you to run and scale containerized applications on AWS.
-     - Amazon ECS supports Docker containers. Docker(opens in a new tab) is a software platform that enables you to build, test, and deploy applications quickly. 
+     - Amazon ECS supports Docker containers. Docker is a software platform that enables you to build, test, and deploy applications quickly. 
    - Amazon Elastic Kubernetes Service (Amazon EKS) :
      - It is a fully managed service that you can use to run Kubernetes on AWS.    
      - Kubernetes is open-source software that enables you to deploy and manage containerized applications at scale.
@@ -239,6 +239,61 @@ chmod 400 EC2Tutorial.pem
 ### AWS Outposts
 - AWS Outposts is a service provided by Amazon Web Services (AWS) that extends the AWS infrastructure, services, APIs, and tools to customers' on-premises data centers or co-location spaces. Essentially, it brings the power and flexibility of the AWS cloud to your own physical location.
 
+
+### AWS virtual private cloud
+- Amazon VPC enables you to provision an isolated section of the AWS Cloud. 
+- In this isolated section, you can launch resources in a virtual network that you define. 
+- Within a virtual private cloud (VPC), you can organize your resources into subnets.
+- A subnet is a section of a VPC that can contain resources such as Amazon EC2 instances. 
+- Internet gateway
+  - To allow public traffic from the internet to access your VPC, you attach an internet gateway to the VPC.
+  - An internet gateway is a connection between a VPC and the internet. 
+  - You can think of an internet gateway as being similar to a doorway that customers use to enter the coffee shop. Without an internet gateway, no one can access the resources within your VPC.
+- Virtual private gateway
+  - To access private resources in a VPC, you can use a virtual private gateway. 
+  - Here’s an example of how a virtual private gateway works. You can think of the internet as the road between your home and the coffee shop. Suppose that you are traveling on this road with a bodyguard to protect you. You are still using the same road as other customers, but with an extra layer of protection. 
+  - The bodyguard is like a virtual private network (VPN) connection that encrypts (or protects) your internet traffic from all the other requests around it. 
+  - The virtual private gateway is the component that allows protected internet traffic to enter into the VPC. Even though your connection to the coffee shop has extra protection, traffic jams are possible because you’re using the same road as other customers. 
+  - A virtual private gateway enables you to establish a virtual private network (VPN) connection between your VPC and a private network, such as an on-premises data center or internal corporate network.
+- AWS Direct Connect
+  - AWS Direct Connect is a service that lets you to establish a dedicated private connection between your data center and a VPC.
+  - Suppose that there is an apartment building with a hallway directly linking the building to the coffee shop. Only the residents of the apartment building can travel through this hallway. 
+  - This private hallway provides the same type of dedicated connection as AWS Direct Connect. Residents are able to get into the coffee shop without needing to use the public road shared with other customers.   
+
+
+### Subnets
+- A subnet is a section of a VPC in which you can group resources based on security or operational needs. Subnets can be public or private.
+- Public subnets contain resources that need to be accessible by the public, such as an online store’s website.
+- Private subnets contain resources that should be accessible only through your private network, such as a database that contains customers’ personal information and order histories. 
+- In a VPC, subnets can communicate with each other. For example, you might have an application that involves Amazon EC2 instances in a public subnet communicating with databases that are located in a private subnet.
+![subnet image](./images/subnets.png)
+
+
+### Network ACLs ( network access control list )
+- When a customer requests data from an application hosted in the AWS Cloud, this request is sent as a packet. A packet is a unit of data sent over the internet or a network. 
+- It enters into a VPC through an internet gateway. Before a packet can enter into a subnet or exit from a subnet, it checks for permissions. These permissions indicate who sent the packet and how the packet is trying to communicate with the resources in a subnet.
+- The VPC component that checks packet permissions for subnets is a network access control list (ACL).
+- A network ACL is a virtual firewall that controls inbound and outbound traffic at the subnet level.
+- Each AWS account includes a default network ACL. When configuring your VPC, you can use your account’s default network ACL or create custom network ACLs. 
+- By default, your account’s default network ACL allows all inbound and outbound traffic, but you can modify it by adding your own rules.
+- For custom network ACLs, all inbound and outbound traffic is denied until you add rules to specify which traffic to allow.
+- Network ACLs perform stateless packet filtering. They remember nothing and check packets that cross the subnet border each way: inbound and outbound. 
+- A security group is a virtual firewall that controls inbound and outbound traffic for an Amazon EC2 instance.
+- Security groups perform stateful packet filtering. They remember previous decisions made for incoming packets.
+![subnet image](./images/vpc.png)
+
+
+### Domain Name System (DNS)
+- Suppose that AnyCompany has a website hosted in the AWS Cloud.
+- Customers enter the web address into their browser, and they are able to access the website.
+- You can think of DNS as being the phone book of the internet. DNS resolution is the process of translating a domain name to an IP address. 
+
+
+### Amazon Route 53
+- Amazon Route 53 is a DNS web service. It gives developers and businesses a reliable way to route end users to internet applications hosted in AWS. 
+- Amazon Route 53 connects user requests to infrastructure running in AWS (such as Amazon EC2 instances and load balancers). It can route users to infrastructure outside of AWS.
+- Another feature of Route 53 is the ability to manage the DNS records for domain names. You can register new domain names directly in Route 53. You can also transfer DNS records for existing domain names managed by other domain registrars. This enables you to manage all of your domain names within a single location.
+
 ### EC2 Security Groups
 - An EC2 security group acts like a virtual firewall in Amazon Web Services (AWS). It controls the inbound and outbound traffic that can reach your EC2 instances.
 - Inbound Traffic Filtering: Security groups define rules that specify which types of traffic (protocols like TCP, UDP) are allowed to reach your instance and from which sources (IP addresses or security groups). It's like a gatekeeper deciding who can enter your virtual building (instance).
@@ -260,18 +315,44 @@ Here's an example:
 - EC2 Image Builder takes the manual and error-prone process of creating, maintaining, and testing AMIs and turns it into a streamlined and automated workflow, saving you time, effort, and ensuring consistent and reliable deployments.
 
 ### EC2 Instance Store
-- Imagine you're setting up a temporary workspace on your computer. EC2 Instance Store is like that temporary storage space attached directly to your virtual server (EC2 instance) in the cloud. It provides block-level storage for data that you need while your instance is running.
+- An instance store provides temporary block-level storage for an Amazon EC2 instance. 
+- An instance store is disk storage that is physically attached to the host computer for an EC2 instance, and therefore has the same lifespan as the instance. 
+- When the instance is terminated, you lose any data in the instance store.
 
 ### EBS ( Elastic Block Store )
 - EBS, or Elastic Block Store, is a service offered by Amazon Web Services (AWS) that provides persistent block storage volumes for use with EC2 (Elastic Compute Cloud) instances.
+- An Amazon EBS volume stores data in a single Availability Zone. 
+- To attach an Amazon EC2 instance to an EBS volume, both the Amazon EC2 instance and the EBS volume must reside within the same Availability Zone.
 - Imagine a scenario: You're working on a critical project and need a reliable storage solution. Traditional hard drives can be bulky, have limited scalability, and are prone to failure. EBS acts as your secure and scalable storage solution in the cloud.
 - Think of EC2 instances as virtual servers (your computers) and EBS volumes as secure external hard drives.  You can use your computers (EC2 instances) to process data stored on the external hard drives (EBS volumes). Even if your computer restarts or malfunctions, the data on the external hard drive remains safe.
+- if u are doing complex read write function
 
 ### EBS Snapshot
 - An EBS snapshot in AWS is like a snapshot in time for your EBS volume (cloud storage).
+- An EBS snapshot is an incremental backup.
+- This means that the first backup taken of a volume copies all the data. For subsequent backups, only the blocks of data that have changed since the most recent snapshot are saved. 
+
+### Object storage
+- In object storage, each object consists of data, metadata, and a key.
+- The data might be an image, video, text document, or any other type of file. 
+- Metadata contains information about what the data is, how it is used, the object size, and so on. An object’s key is its unique identifier.
+
+
+### Amazon S3
+- Amazon Simple Storage Service (Amazon S3) is a service that provides object-level storage. Amazon S3 stores data as objects in buckets.
+- You can upload any type of file to Amazon S3, such as images, videos, text files, and so on. 
+- For example, you might use Amazon S3 to store backup files, media files for a website, or archived documents.
+- Amazon S3 offers unlimited storage space. The maximum file size for an object in Amazon S3 is 5 TB.
+- When you upload a file to Amazon S3, you can set permissions to control visibility and access to it. You can also use the Amazon S3 versioning feature to track changes to your objects over time.
+- if u have occassionally changes  
 
 ### EFS ( Elastic file system ) 
 -  EFS (Elastic File System) is a managed file system service offered by Amazon Web Services (AWS) that provides scalable, elastic file storage for use with EC2 (Elastic Compute Cloud) instances. It allows multiple EC2 instances to concurrently access and share data in a single file system
+- In file storage, multiple clients (such as users, applications, servers, and so on) can access data that is stored in shared file folders.
+- Compared to block storage and object storage, file storage is ideal for use cases in which a large number of services and resources need to access the same data at the same time.
+- It is a scalable file system used with AWS Cloud services and on-premises resources. As you add and remove files, Amazon EFS grows and shrinks automatically. It can scale on demand to petabytes without disrupting applications. 
+- Amazon EFS is a regional service. It stores data in and across multiple Availability Zones. 
+- The duplicate storage enables you to access data concurrently from all the Availability Zones in the Region where a file system is located. Additionally, on-premises servers can access Amazon EFS using AWS Direct Connect.
 
 - Example : Imagine a team working on a photo-sharing web application. They use EFS (Elastic File System) in AWS to store all the uploaded photos. This central file system allows multiple servers running the application to access and manage the photos simultaneously. As the photo collection grows, EFS automatically scales its storage to accommodate the extra data. Different teams can also access the EFS system to moderate content or edit photos, ensuring everyone works with the latest versions.  Overall, EFS simplifies photo storage, cuts management costs, and improves application performance by providing a central and scalable solution.
 
