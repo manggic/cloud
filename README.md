@@ -345,6 +345,38 @@ Here's an example:
 - Amazon S3 offers unlimited storage space. The maximum file size for an object in Amazon S3 is 5 TB.
 - When you upload a file to Amazon S3, you can set permissions to control visibility and access to it. You can also use the Amazon S3 versioning feature to track changes to your objects over time.
 - if u have occassionally changes  
+- When selecting an Amazon S3 storage class, consider these two factors:
+  - How often you plan to retrieve your data
+  - How available you need your data to be
+- S3 standard :
+  - Designed for frequently accessed data  
+  - Stores data in a minimum of three Availability Zones
+  - Amazon S3 Standard provides high availability for objects.
+- S3 standard infrequent access ( IA ) :
+  - Ideal for infrequently accessed data
+  - Amazon S3 Standard-IA is ideal for data infrequently accessed but requires high availability when needed. 
+  - Both Amazon S3 Standard and Amazon S3 Standard-IA store data in a minimum of three Availability Zones. 
+- S3 One Zone-infrequent access ( s3 one zone-IA ) :
+  - Stores data in a single Availability Zone
+  - Compared to S3 Standard and S3 Standard-IA, which store data in a minimum of three Availability Zones, S3 One Zone-IA stores data in a single Availability Zone.
+- S3 intelligent tiering :
+  - Ideal for data with unknown or changing access patterns
+  - Requires a small monthly monitoring and automation fee per object
+  - In the S3 Intelligent-Tiering storage class, Amazon S3 monitors objects’ access patterns. 
+  - If you haven’t accessed an object for 30 consecutive days, Amazon S3 automatically moves it to the infrequent access tier, S3 Standard-IA.
+  - If you access an object in the infrequent access tier, Amazon S3 automatically moves it to the frequent access tier, S3 Standard.
+- S3 Glacier Instant Retrieval :
+  - Works well for archived data that requires immediate access
+  - Can retrieve objects within a few milliseconds
+- S3 Glacier Flexible Retrieval :
+  - Low-cost storage designed for data archiving
+  - Able to retrieve objects within a few minutes to hours
+  - For example, you might use this storage class to store archived customer records or older photos and video files
+  - You can retrieve your data from S3 Glacier Flexible Retrieval from 1 minute to 12 hours.
+- S3 Glacier Deep Archive : 
+  - S3 Deep Archive supports long-term retention and digital preservation for data that might be accessed once or twice in a year.
+  - This storage class is the lowest-cost storage in the AWS Cloud, with data retrieval from 12 to 48 hours.
+  - All objects from this storage class are replicated and stored across at least three geographically dispersed Availability Zones.
 
 ### EFS ( Elastic file system ) 
 -  EFS (Elastic File System) is a managed file system service offered by Amazon Web Services (AWS) that provides scalable, elastic file storage for use with EC2 (Elastic Compute Cloud) instances. It allows multiple EC2 instances to concurrently access and share data in a single file system
