@@ -84,10 +84,13 @@ chmod 400 EC2Tutorial.pem
 ```
 
 ### IAM Roles
+- An IAM role is an identity that you can assume to gain temporary access to permissions.  
+- IAM roles are ideal for situations in which access to services or resources needs to be granted temporarily, instead of long-term.  
 - If a service in AWS needs to do work in another AWS service, a role is required
 - If services in AWS need to talk to each other to accomplish a task, they need to have roles assigned.
-- It is assigned to applications or services. 
-- You cannot attach a role to an IAM user. You can attach the role to other AWS services like Ec2. 
+- For Example: 
+  - In the coffee shop, an employee rotates to different workstations throughout the day. Depending on the staffing of the coffee shop, this employee might perform several duties: work at the cash register, update the inventory system, process online orders, and so on. 
+  - When the employee needs to switch to a different task, they give up their access to one workstation and gain access to the next workstation. The employee can easily switch between workstations, but at any given point in time, they can have access to only a single workstation. This same concept exists in AWS with IAM roles.
 
 ### EC2 instances
 - Sure! Let's imagine Amazon Web Services (AWS) as a magical playground where you can create and play with virtual computers called EC2 instances.
@@ -427,6 +430,13 @@ Here's an example:
 - With AWS DMS, you move data between a source database and a target database.
 - The source and target databases can be of the same type or different types
 - During the migration, your source database remains operational, reducing downtime for any applications that rely on the database. 
+
+### AWS shared responsibility model
+- The reason is that you do not treat your AWS environment as a single object. Rather, you treat the environment as a collection of parts that build upon each other. AWS is responsible for some parts of your environment and you (the customer) are responsible for other parts. This concept is known as the shared responsibility model.
+
+![shared_responsibilty](/images/shared_responsibilty.png)
+
+- You can think of this model as being similar to the division of responsibilities between a homeowner and a homebuilder. The builder (AWS) is responsible for constructing your house and ensuring that it is solidly built. As the homeowner (the customer), it is your responsibility to secure everything in the house by ensuring that the doors are closed and locked. 
 
 ### Amazon fsx
 - Amazon FSx, short for Amazon File System x,  is a managed file storage service offered by AWS that simplifies how you set up and manage file systems in the cloud. It caters to a variety of storage needs, from traditional Windows workloads to high-performance computing tasks.
