@@ -245,17 +245,20 @@ chmod 400 EC2Tutorial.pem
 - In this isolated section, you can launch resources in a virtual network that you define. 
 - Within a virtual private cloud (VPC), you can organize your resources into subnets.
 - A subnet is a section of a VPC that can contain resources such as Amazon EC2 instances. 
-- Internet gateway
+
+- Internet gateway :
   - To allow public traffic from the internet to access your VPC, you attach an internet gateway to the VPC.
   - An internet gateway is a connection between a VPC and the internet. 
   - You can think of an internet gateway as being similar to a doorway that customers use to enter the coffee shop. Without an internet gateway, no one can access the resources within your VPC.
-- Virtual private gateway
+
+- Virtual private gateway :
   - To access private resources in a VPC, you can use a virtual private gateway. 
   - Here’s an example of how a virtual private gateway works. You can think of the internet as the road between your home and the coffee shop. Suppose that you are traveling on this road with a bodyguard to protect you. You are still using the same road as other customers, but with an extra layer of protection. 
   - The bodyguard is like a virtual private network (VPN) connection that encrypts (or protects) your internet traffic from all the other requests around it. 
   - The virtual private gateway is the component that allows protected internet traffic to enter into the VPC. Even though your connection to the coffee shop has extra protection, traffic jams are possible because you’re using the same road as other customers. 
   - A virtual private gateway enables you to establish a virtual private network (VPN) connection between your VPC and a private network, such as an on-premises data center or internal corporate network.
-- AWS Direct Connect
+
+- AWS Direct Connect :
   - AWS Direct Connect is a service that lets you to establish a dedicated private connection between your data center and a VPC.
   - Suppose that there is an apartment building with a hallway directly linking the building to the coffee shop. Only the residents of the apartment building can travel through this hallway. 
   - This private hallway provides the same type of dedicated connection as AWS Direct Connect. Residents are able to get into the coffee shop without needing to use the public road shared with other customers.   
@@ -381,12 +384,49 @@ Here's an example:
 ### EFS ( Elastic file system ) 
 -  EFS (Elastic File System) is a managed file system service offered by Amazon Web Services (AWS) that provides scalable, elastic file storage for use with EC2 (Elastic Compute Cloud) instances. It allows multiple EC2 instances to concurrently access and share data in a single file system
 - In file storage, multiple clients (such as users, applications, servers, and so on) can access data that is stored in shared file folders.
-- Compared to block storage and object storage, file storage is ideal for use cases in which a large number of services and resources need to access the same data at the same time.
+- Compared to block storage (EBS) and object storage (s3), file storage is ideal for use cases in which a large number of services and resources need to access the same data at the same time.
 - It is a scalable file system used with AWS Cloud services and on-premises resources. As you add and remove files, Amazon EFS grows and shrinks automatically. It can scale on demand to petabytes without disrupting applications. 
 - Amazon EFS is a regional service. It stores data in and across multiple Availability Zones. 
 - The duplicate storage enables you to access data concurrently from all the Availability Zones in the Region where a file system is located. Additionally, on-premises servers can access Amazon EFS using AWS Direct Connect.
 
 - Example : Imagine a team working on a photo-sharing web application. They use EFS (Elastic File System) in AWS to store all the uploaded photos. This central file system allows multiple servers running the application to access and manage the photos simultaneously. As the photo collection grows, EFS automatically scales its storage to accommodate the extra data. Different teams can also access the EFS system to moderate content or edit photos, ensuring everyone works with the latest versions.  Overall, EFS simplifies photo storage, cuts management costs, and improves application performance by providing a central and scalable solution.
+
+### Amazon Relational Database Service ( Amazon RDS )
+- It is a service that enables you to run relational databases in the AWS Cloud.
+- Amazon RDS is a managed service that automates tasks such as hardware provisioning, database setup, patching, and backups.
+- Amazon RDS is available on six database engines, which optimize for memory, performance, or input/output (I/O). Supported database engines include:
+  - Amazon Aurora
+  - PostgreSQL
+  - MySQL
+  - MariaDB
+  - Oracle Database
+  - Microsoft SQL Server
+- Amazon Aurora : 
+  - It is an enterprise-class relational database. 
+  - It is compatible with MySQL and PostgreSQL relational databases.
+  - It is up to five times faster than standard MySQL databases and up to three times faster than standard PostgreSQL databases.
+  - Consider Amazon Aurora if your workloads require high availability. It replicates six copies of your data across three Availability Zones and continuously backs up your data to Amazon S3.
+
+### Nonrelational databases ( Amazon DynamoDB )
+- Nonrelational databases are sometimes referred to as “NoSQL databases” because they use structures other than rows and columns to organize data. 
+- One type of structural approach for nonrelational databases is key-value pairs.
+- With key-value pairs, data is organized into items (keys), and items have attributes (values).
+- In a key-value database, you can add or remove attributes from items in the table at any time.
+- Amazon DynamoDB is a key-value database service. It delivers single-digit millisecond performance at any scale.
+- DynamoDB is serverless, which means that you do not have to provision, patch, or manage servers. 
+- As the size of your database shrinks or grows, DynamoDB automatically scales to adjust for changes in capacity while maintaining consistent performance. 
+- This makes it a suitable choice for use cases that require high performance while scaling.
+
+
+### Amazon Redshift
+- Amazon Redshift(opens in a new tab) is a data warehousing service that you can use for big data analytics.
+- It offers the ability to collect data from many sources and helps you to understand relationships and trends across your data.
+
+### AWS Database Migration Service (AWS DMS)
+- It enables you to migrate relational databases, nonrelational databases, and other types of data stores.
+- With AWS DMS, you move data between a source database and a target database.
+- The source and target databases can be of the same type or different types
+- During the migration, your source database remains operational, reducing downtime for any applications that rely on the database. 
 
 ### Amazon fsx
 - Amazon FSx, short for Amazon File System x,  is a managed file storage service offered by AWS that simplifies how you set up and manage file systems in the cloud. It caters to a variety of storage needs, from traditional Windows workloads to high-performance computing tasks.
